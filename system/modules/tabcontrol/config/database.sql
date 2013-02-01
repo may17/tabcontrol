@@ -22,4 +22,6 @@ CREATE TABLE `tl_content` (
   `tab_autoplay_autoSlide` char(1) NOT NULL default '0',
   `tab_autoplay_delay` int(10) NOT NULL default '2500',
   `tab_autoplay_fade` char(1) NOT NULL default '0',
+  `tabControlCookies` varchar(64) NOT NULL default '',
+  `tab_tabs` blob NULL,  
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

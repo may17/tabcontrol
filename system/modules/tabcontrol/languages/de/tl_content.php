@@ -57,6 +57,12 @@ $GLOBALS['TL_LANG']['tl_content']['tabControl']['tab_autoplay_autoSlide'] = arra
 $GLOBALS['TL_LANG']['tl_content']['tabControl']['tab_autoplay_delay'] = array('Einblendungsdauer', 'Angabe in Millisekunden.');
 $GLOBALS['TL_LANG']['tl_content']['tabControl']['tab_autoplay_fade'] = array('Fade aktivieren', 'Elemente werden ein- und ausgeblendet.');
 
+$GLOBALS['TL_LANG']['tl_content']['tab_tabs'] = array('Reiterüberschriften', 'Bitte geben Sie die Überschriften der Reiter an. HTML-Tags sind erlaubt.');
+$GLOBALS['TL_LANG']['tl_content']['tab_tabs_name'] = 'Reiterüberschrift';
+$GLOBALS['TL_LANG']['tl_content']['tabControlCookies'] = array('Cookie-Name', 'Bitte geben Sie den Cookie-Namen ein.');
+$GLOBALS['TL_LANG']['tl_content']['tab_tabs_cookies_value'] = 'Cookie-Wert';
+$GLOBALS['TL_LANG']['tl_content']['tab_tabs_default'] = 'Standard';
+
 
 /**
  * Legends

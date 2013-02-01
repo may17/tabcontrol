@@ -1,41 +1,15 @@
 <?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
 
 /**
- * Contao Open Source CMS
- * Copyright (C) 2005-2012 Leo Feyer
- *
- * Formerly known as TYPOlight Open Source CMS.
- *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
+ * TabControl
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- * @copyright  Christian Barkowsky, Jean-Bernard Valentaten 2009-2012
+ * @copyright  Christian Barkowsky 2012-2013, Jean-Bernard Valentaten 2009-2012
+ * @package    tabControl
  * @author     Christian Barkowsky <http://www.christianbarkowsky.de>, Jean-Bernard Valentaten <troggy.brains@gmx.de>
- * @package    TabControl
- * @license    GNU/LGPL
- * @filesource
+ * @license    LGPL
  */
-
-
-/**
- * Class ContentTabControl
- *
- * @copyright  Christian Barkowsky, Jean-Bernard Valentaten 2009-2012
- * @author     Christian Barkowsky <http://www.christianbarkowsky.de>, Jean-Bernard Valentaten <troggy.brains@gmx.de>
- * @package    Controller
- */
+ 
+ 
 class ContentTabControl extends ContentElement
 {
 	/**
@@ -61,10 +35,9 @@ class ContentTabControl extends ContentElement
      */
     protected function compile()
     {
-        //init vars
-        $classes = deserialize($this->tabClasses); //come all ye classes ;)
-        $titles = deserialize($this->tabTitles); //will only be filled when in tab-mode
-        static $panelIndex = 0; //static index counter
+        static $panelIndex = 0; 
+        $classes = deserialize($this->tabClasses);      
+        $arrTabTabs = deserialize($this->tab_tabs);
 
         //default classes if neccessary
         if (!count($classes))
@@ -119,10 +92,11 @@ class ContentTabControl extends ContentElement
                 } else
                 {
                     $titleList = '';
-
-                    foreach ($titles as $index => $title)
+                    
+                    $counter = 1;
+                    foreach($arrTabTabs as $index)
                     {
-                        $titleList .=++$index . '. ' . $title . '<br/>';
+                    	$titleList .= $counter++ . '. ' . $index['tab_tabs_name'] . '<br>';
                     }
 
                     $this->Template = new BackendTemplate('be_wildcard');
@@ -180,7 +154,33 @@ class ContentTabControl extends ContentElement
         $this->Template->panesSelector = '.' . str_replace(' ', '.', $classes[1]);
         $this->Template->tabs = $classes[0];
         $this->Template->tabsSelector = '.' . str_replace(' ', '.', $classes[0]);
-        $this->Template->titles = $titles;
+        
+        f(!empty($arrTabTabs))
+		{
+			$defaultByCookie = '';
+			$default = 0;
+		
+			foreach($arrTabTabs as $index => $title)
+			{
+				$arrTabTitles[] = $title['tab_tabs_name'];
+				
+				if($title['tab_tabs_default'])
+				{
+					$default = $index;
+				}
+				
+				if($this->tabControlCookies)
+				{
+					if($this->check($title, $this->tabControlCookies))
+					{
+						$defaultByCookie = $index;
+					}
+				}
+			}			
+						
+			$this->Template->tab_tabs_default = $defaultByCookie ? $defaultByCookie : $default;
+			$this->Template->titles = $arrTabTitles;
+		}
         
         $this->Template->tab_autoplay_autoSlide = $this->tab_autoplay_autoSlide;
         $this->Template->tab_autoplay_delay = $this->tab_autoplay_delay;
@@ -201,6 +201,25 @@ class ContentTabControl extends ContentElement
         }
 
         return null;
+    }
+    
+    
+    /**
+     * Set default tab by cookie
+     */
+    protected function check($title, $cookieName)
+    {
+    	$cookieValue = Input::cookie($cookieName);
+    
+    	if($cookieValue)
+    	{
+	    	if($title['tab_tabs_cookies_value'] == $cookieValue)
+	    	{
+		    	return true;
+	    	}
+    	}
+    	
+    	return false;
     }
 }
 
