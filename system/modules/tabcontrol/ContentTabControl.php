@@ -209,7 +209,7 @@ class ContentTabControl extends ContentElement
      */
     protected function check($title, $cookieName)
     {
-    	$cookieValue = Input::cookie($cookieName);
+    	$cookieValue = $this->Input->cookie($cookieName);
     
     	if($cookieValue)
     	{
