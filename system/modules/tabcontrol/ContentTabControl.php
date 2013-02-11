@@ -91,15 +91,16 @@ class ContentTabControl extends ContentElement
 					$this->Template = new FrontendTemplate($this->strTemplate);
                 } else
                 {
-                
                     $titleList = '';
                     
-                    $counter = 1;
-                    foreach($arrTabTabs as $index)
+                    if(!empty($arrTabTabs))
                     {
-                    	$titleList .= $counter++ . '. ' . $index['tab_tabs_name'] . '<br>';
-                    }
-                    
+                    	$counter = 1;
+                    	foreach($arrTabTabs as $index)
+	                    {
+	                    	$titleList .= $counter++ . '. ' . $index['tab_tabs_name'] . '<br>';
+	                    }
+	                }                    
 
                     $this->Template = new BackendTemplate('be_wildcard');
                     $this->Template->wildcard = '### TabControl START: Tabs ###';
