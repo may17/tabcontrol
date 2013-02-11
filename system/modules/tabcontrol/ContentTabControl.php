@@ -91,6 +91,7 @@ class ContentTabControl extends ContentElement
 					$this->Template = new FrontendTemplate($this->strTemplate);
                 } else
                 {
+                
                     $titleList = '';
                     
                     $counter = 1;
@@ -98,6 +99,7 @@ class ContentTabControl extends ContentElement
                     {
                     	$titleList .= $counter++ . '. ' . $index['tab_tabs_name'] . '<br>';
                     }
+                    
 
                     $this->Template = new BackendTemplate('be_wildcard');
                     $this->Template->wildcard = '### TabControl START: Tabs ###';
@@ -133,6 +135,7 @@ class ContentTabControl extends ContentElement
             // Tabcontrol - end
             case 'tabcontrol_end':
             default:
+            	
             	if (TL_MODE == 'FE')
                 {
                 	$this->Template = new FrontendTemplate('ce_tabcontrol_end');
@@ -140,6 +143,7 @@ class ContentTabControl extends ContentElement
 		           	$this->Template = new BackendTemplate('be_wildcard');
                     $this->Template->wildcard = '### TabControl END ###';
 	            }
+	            
             	break;
         }
 
