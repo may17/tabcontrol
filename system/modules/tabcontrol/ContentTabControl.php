@@ -155,7 +155,7 @@ class ContentTabControl extends ContentElement
         $this->Template->tabs = $classes[0];
         $this->Template->tabsSelector = '.' . str_replace(' ', '.', $classes[0]);
         
-        f(!empty($arrTabTabs))
+        if(!empty($arrTabTabs))
 		{
 			$defaultByCookie = '';
 			$default = 0;
