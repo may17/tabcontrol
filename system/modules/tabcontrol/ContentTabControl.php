@@ -143,6 +143,7 @@ class ContentTabControl extends ContentElement
 	            } else {
 		           	$this->Template = new BackendTemplate('be_wildcard');
                     $this->Template->wildcard = '### TabControl END ###';
+                    $panelIndex = 0;
 	            }
 	            
             	break;
