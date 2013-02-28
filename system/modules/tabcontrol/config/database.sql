@@ -23,5 +23,9 @@ CREATE TABLE `tl_content` (
   `tab_autoplay_delay` int(10) NOT NULL default '2500',
   `tab_autoplay_fade` char(1) NOT NULL default '0',
   `tabControlCookies` varchar(64) NOT NULL default '',
-  `tab_tabs` blob NULL,  
+  `tab_tabs` blob NULL, 
+  `tab_template` varchar(64) NOT NULL default '',
+  `tab_template_start` varchar(64) NOT NULL default '',
+  `tab_template_stop` varchar(64) NOT NULL default '',
+  `tab_template_end` varchar(64) NOT NULL default '', 
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
