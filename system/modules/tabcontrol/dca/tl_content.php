@@ -121,4 +121,74 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tab_tabs'] = array
 	)
 );
 
+
+class tl_content_tabcontrol extends Backend
+{
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->import('BackendUser', 'User');
+	}
+	
+	
+	/**
+	* Return all tabcontrol templates as array
+	*/
+	public function getTabcontrolTemplates(DataContainer $dc)
+	{
+		// Only look for a theme in the articles module (see #4808)
+		if (Input::get('do') == 'article')
+		{
+			$intPid = $dc->activeRecord->pid;
+	
+			if (Input::get('act') == 'overrideAll')
+			{
+				$intPid = Input::get('id');
+			}
+	
+			// Get the page ID
+			$objArticle = $this->Database->prepare("SELECT pid FROM tl_article WHERE id=?")
+				->limit(1)
+				->execute($intPid);
+	
+			// Inherit the page settings
+			$objPage = $this->getPageDetails($objArticle->pid);
+	
+			// Get the theme ID
+			$objLayout = LayoutModel::findByPk($objPage->layout);
+	
+			if ($objLayout === null)
+			{
+				return array();
+			}
+		}
+	
+		$templateSnip = '';
+	
+		switch($dc->activeRecord->tabType)
+		{	
+			case 'tabcontrolstart':
+				$templateSnip = 'start';
+				break;
+	
+			case 'tabcontrolstop':
+				$templateSnip = 'stop';
+				break;
+	
+			case 'tabcontrol_end':
+				$templateSnip = 'end';
+				break;
+	
+			case 'tabcontroltab':
+			default:
+				$templateSnip = 'tab';
+				break;
+		}
+	
+		// Return all gallery templates
+		return $this->getTemplateGroup('ce_tabcontrol_' . $templateSnip, $objLayout->pid);
+	}
+}
+
 ?>
