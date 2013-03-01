@@ -63,6 +63,15 @@ $GLOBALS['TL_LANG']['tl_content']['tabControlCookies'] = array('Cookie-Name', 'B
 $GLOBALS['TL_LANG']['tl_content']['tab_tabs_cookies_value'] = 'Cookie-Wert';
 $GLOBALS['TL_LANG']['tl_content']['tab_tabs_default'] = 'Standard';
 
+$GLOBALS['TL_LANG']['tl_content']['tab_template']['0'] = "TabControl Template";
+$GLOBALS['TL_LANG']['tl_content']['tab_template']['1'] = "Hier können Sie das Template auswählen.";
+$GLOBALS['TL_LANG']['tl_content']['tab_template_start']['0'] = "TabControl Template";
+$GLOBALS['TL_LANG']['tl_content']['tab_template_start']['1'] = "Hier können Sie das Template auswählen.";
+$GLOBALS['TL_LANG']['tl_content']['tab_template_stop']['0'] = "TabControl Template";
+$GLOBALS['TL_LANG']['tl_content']['tab_template_stop']['1'] = "Hier können Sie das Template auswählen.";
+$GLOBALS['TL_LANG']['tl_content']['tab_template_end']['0'] = "TabControl Template";
+$GLOBALS['TL_LANG']['tl_content']['tab_template_end']['1'] = "Hier können Sie das Template auswählen.";
+
 
 /**
  * Legends
