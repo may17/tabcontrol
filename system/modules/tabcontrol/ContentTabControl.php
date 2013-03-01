@@ -88,7 +88,7 @@ class ContentTabControl extends ContentElement
 						}
 					}
 
-					$this->Template = new FrontendTemplate($this->strTemplate);
+					$this->Template = new FrontendTemplate($this->tab_template);
                 } else
                 {
                     $titleList = '';
@@ -112,7 +112,7 @@ class ContentTabControl extends ContentElement
             case 'tabcontrolstart':
                 if (TL_MODE == 'FE')
                 {
-                    $this->Template = new FrontendTemplate('ce_tabcontrol_start');
+                    $this->Template = new FrontendTemplate($this->tab_template_start);
                     $this->Template->paneindex = ++$panelIndex;
                 } else
                 {
@@ -125,7 +125,7 @@ class ContentTabControl extends ContentElement
             case 'tabcontrolstop':
                 if (TL_MODE == 'FE')
                 {
-                    $this->Template = new FrontendTemplate('ce_tabcontrol_stop');
+                    $this->Template = new FrontendTemplate($this->tab_template_stop);
                 } else
                 {
                     $this->Template = new BackendTemplate('be_wildcard');
@@ -139,7 +139,7 @@ class ContentTabControl extends ContentElement
             	
             	if (TL_MODE == 'FE')
                 {
-                	$this->Template = new FrontendTemplate('ce_tabcontrol_end');
+                	$this->Template = new FrontendTemplate($this->tab_template_end);
 	            } else {
 		           	$this->Template = new BackendTemplate('be_wildcard');
                     $this->Template->wildcard = '### TABCONTROL: TABGROUP END ###';
