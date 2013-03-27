@@ -27,7 +27,7 @@ class ContentTabControl extends ContentElement
     /**
      * Contains the path to the js-plugin needed for Tabcontrols to work
      */
-    private $strPlugin = 'plugins/tabcontrol/tabcontrol.js';
+    private $strPlugin = 'plugins/tabcontrol/moo_tabcontrol.js';
 
 
     /**
