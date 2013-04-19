@@ -3,7 +3,7 @@
 /* <![CDATA[ */
 	function loadTabControl_<?php echo $this->id; ?>() {
 	
-		var tablist = [<?php foreach ($this->titles as $key => $title) : ?>'<?php echo standardize($key); ?>',<?php endforeach; ?>];
+		var tablist = [<?php foreach ($this->titles as $key => $title) : ?>'<?php echo standardize($title); ?>',<?php endforeach; ?>];
 	
 		window.TC_<?php echo $this->id; ?> = new Array();
 		i = 0;
